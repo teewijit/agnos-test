@@ -2,9 +2,10 @@ services:
   api:
     image: api
     build:
-      context: ./hospital-a.api
+      context: .
+      dockerfile: ./Dockerfile
     # ไม่กำหนด ports เพื่อให้ scale ได้
-    env_file: ./hospital-a.api/.env
+    env_file: .env
     depends_on:
       db:
         condition: service_healthy

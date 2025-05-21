@@ -9,7 +9,7 @@ import (
 )
 
 func setup() *gin.Engine {
-	config.InitDB()
+	config.DB = config.InitDB()
 	r := gin.Default()
 	routes.SetupRoutes(r)
 	return r
