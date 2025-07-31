@@ -29,3 +29,21 @@ func InsertStaffController(c *gin.Context) {
 		"message": "Staff created successfully",
 	})
 }
+
+func DeleteStaffController(c *gin.Context) {
+	id := c.Param("id")
+
+	if id == "" {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "id parameter is required"})
+		return
+	}
+
+
+	err := services.DeleteStaff(config.DB, id)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"message": "Staff deleted successfully"})
+}

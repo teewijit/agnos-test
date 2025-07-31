@@ -12,7 +12,7 @@ func LoginStaffController(c *gin.Context) {
 	var input struct {
 		Username   string `json:"username" binding:"required"`
 		Password   string `json:"password" binding:"required"`
-		HospitalID uint   `json:"hospital_id" binding:"required"`
+		HospitalID uint   `json:"hospital_id"`
 	}
 
 	if err := c.ShouldBindJSON(&input); err != nil {

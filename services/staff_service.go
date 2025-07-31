@@ -29,3 +29,8 @@ func CreateStaff(db *gorm.DB, username, password string, hospitalID uint) error 
 	result := db.Create(&staff)
 	return result.Error
 }
+
+func DeleteStaff(db *gorm.DB, id string) error {
+	result := db.Delete(&models.Staff{}, id)
+	return result.Error
+}

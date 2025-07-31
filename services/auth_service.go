@@ -17,7 +17,11 @@ type InsertStaff struct {
 // เข้าระบบ
 func LoginStaff(db *gorm.DB, username, password string, hospitalID uint) (*models.Staff, error) {
 	var staff models.Staff
-	err := db.Where("username = ? AND hospital_id = ?", username, hospitalID).First(&staff).Error
+	query := db.Where("username = ?", username)
+	if hospitalID > 0 {
+		query = query.Where("hospital_id = ?", hospitalID)
+	}
+	err := query.Preload("Hospital").First(&staff).Error
 	if err != nil {
 		return nil, errors.New("user not found")
 	}

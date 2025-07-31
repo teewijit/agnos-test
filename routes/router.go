@@ -33,4 +33,7 @@ func SetupRoutes(r *gin.Engine) {
 	// Patient Routes
 	protected.GET("/patient/search/:id", controllers.SearchPatient)
 
+	//del staff
+	protected.POST("/staff/delete/:id", controllers.DeleteStaffController)
+
 }
